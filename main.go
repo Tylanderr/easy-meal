@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"math/rand"
 
-	// "github.com/a-h/templ"
 	"github.com/magiconair/properties"
 
 	"net/smtp"
@@ -91,13 +90,12 @@ func main() {
 		data := model.EmailData{
 			Receiver: userArray[i].Email,
 			Meals:    mealsString,
+			AllIngredients: sortedIngredientsStruct,
 		}
 
 		emailBody := html.Email(data)
 
 		emailString, err := html.TemplString(emailBody)
-		// __AUTO_GENERATED_PRINT_VAR_START__
-		fmt.Println(fmt.Sprintf("main emailString: %v", emailString)) // __AUTO_GENERATED_PRINT_VAR_END__
 		if err != nil {
 			fmt.Println(err)
 		}
@@ -106,6 +104,7 @@ func main() {
 			sendEmail(emailString, userArray[i].Email)
 		} else {
 			// TODO: output to console
+			fmt.Println(emailString)
 		}
 	}
 }
@@ -197,11 +196,11 @@ func readProperties() {
 func sortIngredients(ingredients []model.Ingredient, sortedIngredients *model.SortedIngredients) {
 	// For each ingredient, check if it is contained within one of the slices
 	for i := range ingredients {
-		ci := ingredients[i]
+		currentIngredient := ingredients[i]
 
 		for _, categorySlice := range groceryCategories {
-			if slices.Contains(categorySlice.ItemsSlice, ci.Name) {
-				sortedIngredients.IncrementIngredientCount(categorySlice.Name, ci)
+			if slices.Contains(categorySlice.ItemsSlice, currentIngredient.Name) {
+				sortedIngredients.IncrementIngredientCount(categorySlice.Name, currentIngredient)
 				break
 			}
 		}
