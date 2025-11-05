@@ -7,6 +7,7 @@ import (
 	"math/rand"
 
 	"github.com/magiconair/properties"
+	"github.com/yosssi/gohtml"
 
 	"net/smtp"
 	"os"
@@ -88,8 +89,8 @@ func main() {
 		mealsString += "\n"
 
 		data := model.EmailData{
-			Receiver: userArray[i].Email,
-			Meals:    mealsString,
+			Receiver:       userArray[i].Email,
+			Meals:          mealsString,
 			AllIngredients: sortedIngredientsStruct,
 		}
 
@@ -104,7 +105,7 @@ func main() {
 			sendEmail(emailString, userArray[i].Email)
 		} else {
 			// TODO: output to console
-			fmt.Println(emailString)
+			fmt.Println(gohtml.Format(emailString))
 		}
 	}
 }

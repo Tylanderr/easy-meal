@@ -1,6 +1,6 @@
 module github.com/tylander732/weeklyAutoPlanner
 
-go 1.23.0
+go 1.24.0
 
 toolchain go1.24.1
 
@@ -17,10 +17,11 @@ require (
 	github.com/mattn/go-colorable v0.1.13 // indirect
 	github.com/mattn/go-isatty v0.0.20 // indirect
 	github.com/natefinch/atomic v1.0.1 // indirect
+	github.com/yosssi/gohtml v0.0.0-20201013000340-ee4748c638f4 // indirect
 	golang.org/x/mod v0.20.0 // indirect
-	golang.org/x/net v0.37.0 // indirect
+	golang.org/x/net v0.46.0 // indirect
 	golang.org/x/sync v0.10.0 // indirect
-	golang.org/x/sys v0.31.0 // indirect
+	golang.org/x/sys v0.37.0 // indirect
 	golang.org/x/tools v0.24.0 // indirect
 )
 
