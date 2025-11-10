@@ -24,7 +24,7 @@ type Ingredient struct {
 
 type EmailData struct {
 	Receiver       string
-	Meals          string
+	Meals          []string
 	AllIngredients SortedIngredients
 }
 

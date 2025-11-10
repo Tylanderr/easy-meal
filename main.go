@@ -12,7 +12,6 @@ import (
 	"net/smtp"
 	"os"
 	"slices"
-	"strings"
 
 	"github.com/tylander732/weeklyAutoPlanner/pkg/consts"
 	"github.com/tylander732/weeklyAutoPlanner/pkg/html"
@@ -85,12 +84,12 @@ func main() {
 			fmt.Println("Was unable to succesfully select meal for users", err)
 		}
 
-		mealsString := strings.Join(mealNames, "\n")
-		mealsString += "\n"
+		// mealsString := strings.Join(mealNames, "\n")
+		// mealsString += "\n"
 
 		data := model.EmailData{
 			Receiver:       userArray[i].Email,
-			Meals:          mealsString,
+			Meals:          mealNames,
 			AllIngredients: sortedIngredientsStruct,
 		}
 

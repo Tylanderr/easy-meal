@@ -24,11 +24,17 @@ templ Email(data model.EmailData) {
 		<head>
 			<meta charset="UTF-8"/>
 			<title>Weekly Meals</title>
+			<link href="../output.css" rel="stylesheet">
 		</head>
 		<body>
 			@hello(data.Receiver)
-			<h2>Meals for this week:</h2>
-			<p>{ data.Meals }</p>
+			<h1>Meals for this week:</h1>
+			for _, meal := range data.Meals {
+				<div>
+					{ meal }
+				</div>
+			}
+			// <p>{ data.Meals }</p>
 			<table>
 				<tr>
 					<th>Grocery Type</th>
