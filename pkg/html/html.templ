@@ -5,11 +5,12 @@ import "strconv"
 
 templ ingredients(categoryName string, ingredients map[string]int) {
 	<tr>
-		{ categoryName }
-		for name, count := range ingredients {
-			<th>{ name }</th>
-			<th>{ strconv.Itoa(count) }</th>
-		}
+		<th>{ categoryName }</th>
+		<th>
+			for name, count := range ingredients {
+				{ name } { strconv.Itoa(count) } &#10;&#13;
+			}
+		</th>
 	</tr>
 }
 
@@ -24,7 +25,31 @@ templ Email(data model.EmailData) {
 		<head>
 			<meta charset="UTF-8"/>
 			<title>Weekly Meals</title>
-			<link href="../output.css" rel="stylesheet">
+			<style>
+		table {
+			border-collapse: collapse;
+			width: 100%;
+			font-family: Arial, sans-serif;
+		}
+
+		table-small {
+			border-collapse: collapse;
+			width: 100%;
+			font-family: Arial, sans-serif;
+		}
+
+		table th,
+		table td {
+			border: 1px solid #ccc;
+			padding: 8px 12px;
+			text-align: left;
+		}
+
+		table th {
+			background-color: #f4f4f4;
+			font-weight: bold;
+		}
+	</style>
 		</head>
 		<body>
 			@hello(data.Receiver)
@@ -34,7 +59,6 @@ templ Email(data model.EmailData) {
 					{ meal }
 				</div>
 			}
-			// <p>{ data.Meals }</p>
 			<table>
 				<tr>
 					<th>Grocery Type</th>
@@ -44,17 +68,17 @@ templ Email(data model.EmailData) {
 				@ingredients("Meat and Poultry", data.AllIngredients.MeatAndPoultry)
 				@ingredients("Seafood", data.AllIngredients.Seafood)
 				@ingredients("Dairy", data.AllIngredients.Dairy)
-				// @ingredients(data.AllIngredients.Bakery)
-				// @ingredients(data.AllIngredients.FrozenFoods)
-				// @ingredients(data.AllIngredients.PantryStaples)
-				// @ingredients(data.AllIngredients.Beverages)
-				// @ingredients(data.AllIngredients.Snacks)
-				// @ingredients(data.AllIngredients.HouseholdGoods)
-				// @ingredients(data.AllIngredients.PersonalCare)
-				// @ingredients(data.AllIngredients.InternationalFoods)
-				// @ingredients(data.AllIngredients.Deli)
-				// @ingredients(data.AllIngredients.Floral)
-				// @ingredients(data.AllIngredients.Unsorted)
+				@ingredients("Bakery", data.AllIngredients.Bakery)
+				@ingredients("Frozen Foods", data.AllIngredients.FrozenFoods)
+				@ingredients("Pantry Staples", data.AllIngredients.PantryStaples)
+				@ingredients("Beverages", data.AllIngredients.Beverages)
+				@ingredients("Snacks", data.AllIngredients.Snacks)
+				@ingredients("Household Goods", data.AllIngredients.HouseholdGoods)
+				@ingredients("Personal Care", data.AllIngredients.PersonalCare)
+				@ingredients("International Foods", data.AllIngredients.InternationalFoods)
+				@ingredients("Deli", data.AllIngredients.Deli)
+				@ingredients("Floral", data.AllIngredients.Floral)
+				@ingredients("Unsorted", data.AllIngredients.Unsorted)
 			</table>
 		</body>
 	</html>
